@@ -4,6 +4,8 @@
 */
 
 public class Battle {
+	Fighter player;
+	FIghter enemy;
 	//counts the number of rounds the fight has taken so far.
 	int round = 1;
 
@@ -20,6 +22,14 @@ public class Battle {
 				playerTurn();
 			}
 		}
+		//Determine which combatant is defeated and award experience if necessary
+		if(Player.hp <= 0) {
+			System.out.println("You have been defeated");
+			gameover();
+		} else {
+			System.out.println("Victory is yours!")
+			player.addEXP(enemy.getEXP);
+		}
 	}
 
 	public playerTurn() {
@@ -30,7 +40,7 @@ public class Battle {
 		int choice;
 		case(choice) {
 
-			case 1:	attack(Player, Enemy);
+			case 1:	attack(player, monster);
 					break();
 
 			case 2: item();
@@ -42,8 +52,12 @@ public class Battle {
 		}
 	}
 
+	public enemyTurn() {
+		attack(Enemy, Player);
+	}
+
 	public attack(Fighter attacker, Fighter defender) {
 		double damage = attacker.atk - defender.def;
-		defender.setHP(getHP() - damage);
-	}	
+		defender.setHP(defender.getHP() - damage);
+	}
 }
